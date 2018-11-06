@@ -11,34 +11,22 @@
 using namespace std;
 int main()
 {
-    unsigned long int test,n;
-    int t=0;
-    cin >> test;
-    while (test--)
-    {
-        t++;
-        cin >> n;
-        printf("Case #%d: %lu =",t,n);
-        int root = sqrt(n)+1;
-        bool f = true,f1 = false;
-        for(unsigned long int i=root; i>=1; i--){
-            if(!(n%i)){
-                if(f){
-                    f = false;
-                    printf(" %lu * %lu =",i,(unsigned long int)(n/i));
-                }
-                else{
-                    f1 = true;
-                    printf(" %lu * %lu\n",i,(unsigned long int)(n/i));
-                    break;
-                }
+    int testCase,k;
+    scanf ("%d", &testCase);
+    int cases = 0;
+    while(testCase--) {
+        scanf("%d", &k);
+        int len = (int) sqrt (k);
+        int output [4];
+        int currentIndex = 0;
+        for (int i=2; i<=len; i++)
+            if(k%i==0) {
+                output [currentIndex++] = i;
+                output [currentIndex++] = k / i;
+                if (currentIndex==4) break;
             }
-            if(f1)
-                break;
-        }
-        if(f){
-            printf(" %lu * 0\n",n);
-        }
+        printf ("Case #%d: %d = %d * %d = %d * %d\n",
+                ++cases, k, output [0], output [1], output [2], output [3]);
     }
     return 0;
 }
